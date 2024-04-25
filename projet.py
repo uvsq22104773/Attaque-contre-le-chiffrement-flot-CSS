@@ -120,6 +120,28 @@ class CSS:
             m = m[8:]
         return c
 
+# fonction pour l'animation de chargement pendant l'attaque
+# ecrit dans le terminal puis attend qu'on lui demande le prochain
+# car c'est un enumerateur
+def animate():
+    while True:
+        # ecrit
+        print("\rloading |", end="")
+        # attend qu'on le rappelle
+        yield
+        # ecrit
+        print("\rloading /", end="")
+        # attend qu'on le rappelle
+        yield
+        # ecrit
+        print("\rloading -", end="")
+        # attend qu'on le rappelle
+        yield
+        # ecrit
+        print("\rloading \\", end="")
+        # attend qu'on le rappelle
+        yield
+
 # fonction pour générer un s et 6 z pour le test de l'attaque
 def generer_z():
     # creer une liste pour contenir la configuration du css
@@ -143,6 +165,8 @@ def generer_z():
 # fonction d'attaque d'un css
 # il prend en entrée les 6 premiers z d'un css
 def attaque_css(z:list):
+    compt = 0
+    anim = animate()
     # il va tester les 2**16 possibilité pour l'initialisation du lfsr17
     for i in range(2**16):
         # créer une nouvelle liste avec les éléments qui sont sous forme de liste dans z
@@ -196,9 +220,16 @@ def attaque_css(z:list):
         # génération des 6 z
         for j in range(6):
             z_prime.append(css.genere_cle())
+        # ajoute un au compteur pour l'animation
+        compt += 1
+        # si le compteur a augmenté de 250
+        if compt % 250 == 1:
+            # changer l'animation
+            next(anim)
         # verification des z
         # si les z générer sont les mêmes que les 6 connues alors on arrete la boucle et on renvoie le resultat
         if z_prime == z:
+            print("\r", end="")
             return s
     # retourne faux si rien trouvé
     return False
