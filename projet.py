@@ -362,9 +362,9 @@ def demo():
         lfsr = LFSR([0]*taille, coef)
         reponse, nb = lfsr.verif_random()
         if reponse:
-            print(f"Vrai, {nb} valeurs différentes trouvé, ce qui équivaut à 2**{taille}-1 ({(2**taille)-1}) états différents avec comme coeficients de rétrocaction {coef}.")
+            print(f"Vrai, {nb} valeurs différentes trouvées, ce qui équivaut à 2**{taille}-1 ({(2**taille)-1}) états différents avec comme coeficients de rétrocaction {coef}.")
         else:
-            print(f"Faux, {nb} valeurs différentes trouvé, ce qui n'équivaut pas à 2**{taille}-1 états différents avec comme coeficients de rétrocaction {coef}.")
+            print(f"Faux, {nb} valeurs différentes trouvées, ce qui n'équivaut pas à 2**{taille}-1 états différents avec comme coeficients de rétrocaction {coef}.")
     elif question == "3":
 
         while True:
