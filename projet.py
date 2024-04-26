@@ -481,8 +481,8 @@ def demo():
                 elif entree == "exit":
                     return
                 try:
-                    entree = hex(int(s, 16))
                     if len(entree[2:]) <= 10:
+                        entree = int(entree, 16)
                         break
                     else:
                         continue
